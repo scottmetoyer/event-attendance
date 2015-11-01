@@ -1,1 +1,24 @@
-/* Empty. Add your own CSS if you like */
+.home-container {
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+  height: 100%;
+}
+.home-container > .row {
+  -webkit-flex: 1;
+}
+.header {
+  -webkit-flex: 1.2 !important;
+  -webkit-align-items: center;
+  background-color: #1abc9c;
+  border-bottom: solid 10px blue;
+}
+.footer {
+  -webkit-flex: 0.25 !important;
+  background-color: #ececec;
+}
+.icon-row {
+  -webkit-align-items: center;
+}
+.large:before {
+  font-size: 120px !important;
+}

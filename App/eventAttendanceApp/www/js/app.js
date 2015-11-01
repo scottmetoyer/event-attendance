@@ -25,4 +25,14 @@ angular.module('eventAttendance', ['ionic'])
     url: '/',
     templateUrl: 'templates/home.html'
   })
+
+  $stateProvider.state('events', {
+    url: '/events',
+    templateUrl: 'templates/events.html'
+  })
+
+  $stateProvider.state('scan', {
+    url: '/scan',
+    templateUrl: 'templates/scan.html'
+  })
 })
