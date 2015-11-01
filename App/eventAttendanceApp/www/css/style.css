@@ -9,8 +9,8 @@
 .header {
   -webkit-flex: 1.2 !important;
   -webkit-align-items: center;
-  background-color: #1abc9c;
-  border-bottom: solid 10px blue;
+  border-bottom: solid 10px #003066;
+  background-color: #2d6cc0;
 }
 .footer {
   -webkit-flex: 0.25 !important;
@@ -18,6 +18,7 @@
 }
 .icon-row {
   -webkit-align-items: center;
+  color: #003066;
 }
 .large:before {
   font-size: 120px !important;
