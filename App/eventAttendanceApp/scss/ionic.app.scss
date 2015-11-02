@@ -14,10 +14,45 @@ $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
-
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
+// Variables
+$brand-color: #2d6cc0;
+$shadow-color: #003066;
+$footer-color: #ececec;
+.home-container {
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+  height: 100%;
+  font-size: 18px;
+}
+.home-container > .row {
+  -webkit-flex: 1.0;
+}
+.header {
+  -webkit-flex: 1.2 !important;
+  -webkit-align-items: center;
+  border-bottom: solid 10px $shadow-color;
+  background-color: $brand-color;
+}
+.footer {
+  -webkit-flex: 0.25 !important;
+  background-color: $footer-color;
+}
+.icon-row {
+  -webkit-align-items: center;
+  color: $shadow-color;
+}
+.large:before {
+  font-size: 120px !important;
+}
+.spinner.overlay svg {
+  width: 28px;
+  height: 28px;
+  stroke: #fff;
+  fill: #fff;
+}
+
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
-
