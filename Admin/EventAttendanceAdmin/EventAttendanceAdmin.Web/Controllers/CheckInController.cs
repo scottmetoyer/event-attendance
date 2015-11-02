@@ -19,7 +19,12 @@ namespace EventAttendanceAdmin.Web.Controllers
 
         public IQueryable<CheckIn> GetCheckIns()
         {
-            return db.CheckIns;
+            return db.CheckIns.Include(x => x.Event);
+        }
+
+        public IQueryable<CheckIn> GetCheckIns(int eventId)
+        {
+            return db.CheckIns.Where(x => x.EventId == eventId).Include(x => x.Event);
         }
 
         [ResponseType(typeof(CheckIn))]

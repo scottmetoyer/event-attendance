@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,6 +18,7 @@ namespace EventAttendanceAdmin.Web.Models
 
         public DateTime End { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<CheckIn> CheckIns { get; set; }
     }
 }
