@@ -13,16 +13,16 @@ namespace EventAttendanceAdmin.Web.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Events()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Events";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult CheckIns()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Student Check-Ins";
 
             return View();
         }
