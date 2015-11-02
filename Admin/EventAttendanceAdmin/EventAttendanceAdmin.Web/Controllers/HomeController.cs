@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventAttendanceAdmin.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -31,5 +32,21 @@ namespace EventAttendanceAdmin.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult CreateEvent()
+        {
+            return View();
+        }
+
+        public ActionResult EditEvent(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SaveEvent(string name, DateTime start, DateTime end, int pin)
+        {
+            return RedirectToAction("Events");
+        }   
     }
 }

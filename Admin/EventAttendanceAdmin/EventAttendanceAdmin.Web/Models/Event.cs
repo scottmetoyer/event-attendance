@@ -16,6 +16,8 @@ namespace EventAttendanceAdmin.Web.Models
 
         public DateTime End { get; set; }
 
+        public string Pin { get; set; }
+
         [JsonIgnore]
         public virtual ICollection<CheckIn> CheckIns { get; set; }
     }
