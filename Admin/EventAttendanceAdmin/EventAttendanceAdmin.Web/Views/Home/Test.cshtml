@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Test";
+}
+<script>
+    function testPost() {
+        var checkin = { eventid: "1", studentidentifier: "Test Student" };
+        $.ajax({
+            type: "POST",
+            data: JSON.stringify(checkin),
+            url: "/api/checkin",
+            contentType: "application/json"
+        }).done(function (data) {
+            console.log(data);
+        }).fail(function (error) {
+            console.log(error);
+        });
+    }
+</script>
+
+<h2>Test Page</h2>
+<p>Simple page for performing feature tests</p>
+<button onclick="testPost()">Test WebAPI post</button>
+
+

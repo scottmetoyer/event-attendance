@@ -22,6 +22,7 @@ namespace EventAttendanceAdmin.Web.Controllers
             return db.Events;
         }
 
+        [Authorize]
         [ResponseType(typeof(Event))]
         public IHttpActionResult GetEvent(int id)
         {
@@ -34,6 +35,7 @@ namespace EventAttendanceAdmin.Web.Controllers
             return Ok(@event);
         }
 
+        [Authorize]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutEvent(int id, Event @event)
         {
@@ -68,6 +70,7 @@ namespace EventAttendanceAdmin.Web.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        [Authorize]
         [ResponseType(typeof(Event))]
         public IHttpActionResult PostEvent(Event @event)
         {
@@ -82,6 +85,7 @@ namespace EventAttendanceAdmin.Web.Controllers
             return CreatedAtRoute("DefaultApi", new { id = @event.Id }, @event);
         }
 
+        [Authorize]
         [ResponseType(typeof(Event))]
         public IHttpActionResult DeleteEvent(int id)
         {

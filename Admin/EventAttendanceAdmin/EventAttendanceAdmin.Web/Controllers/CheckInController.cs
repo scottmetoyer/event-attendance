@@ -17,16 +17,19 @@ namespace EventAttendanceAdmin.Web.Controllers
     {
         private EventContext db = new EventContext();
 
+        [Authorize]
         public IQueryable<CheckIn> GetCheckIns()
         {
             return db.CheckIns.Include(x => x.Event);
         }
 
+        [Authorize]
         public IQueryable<CheckIn> GetCheckIns(int eventId)
         {
             return db.CheckIns.Where(x => x.EventId == eventId).Include(x => x.Event);
         }
 
+        [Authorize]
         [ResponseType(typeof(CheckIn))]
         public IHttpActionResult GetCheckIn(int id)
         {
@@ -39,6 +42,7 @@ namespace EventAttendanceAdmin.Web.Controllers
             return Ok(checkIn);
         }
 
+        [Authorize]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCheckIn(int id, CheckIn checkIn)
         {
@@ -74,19 +78,21 @@ namespace EventAttendanceAdmin.Web.Controllers
         }
 
         [ResponseType(typeof(CheckIn))]
-        public IHttpActionResult PostCheckIn(CheckIn checkIn)
+        public IHttpActionResult PostCheckIn([FromBody] CheckIn checkIn)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            checkIn.CreateDate = DateTime.Now;
             db.CheckIns.Add(checkIn);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = checkIn.CheckInId }, checkIn);
         }
 
+        [Authorize]
         [ResponseType(typeof(CheckIn))]
         public IHttpActionResult DeleteCheckIn(int id)
         {
