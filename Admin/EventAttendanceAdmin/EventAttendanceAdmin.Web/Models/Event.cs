@@ -7,7 +7,7 @@ namespace EventAttendanceAdmin.Web.Models
 {
     public class Event
     {
-        public int EventId { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 
@@ -16,5 +16,7 @@ namespace EventAttendanceAdmin.Web.Models
         public DateTime Start { get; set; }
 
         public DateTime End { get; set; }
+
+        public virtual ICollection<CheckIn> CheckIns { get; set; }
     }
 }
