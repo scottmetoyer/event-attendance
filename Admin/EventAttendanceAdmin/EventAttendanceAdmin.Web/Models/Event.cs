@@ -12,8 +12,6 @@ namespace EventAttendanceAdmin.Web.Models
 
         public string Name { get; set; }
 
-        public byte[] QRCode { get; set; }
-
         public DateTime Start { get; set; }
 
         public DateTime End { get; set; }

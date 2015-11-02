@@ -205,7 +205,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="connectionStrings.config" />
-    <None Include="Properties\PublishProfiles\EventAttendanceAdminWeb.pubxml" />
+    <None Include="Properties\PublishProfiles\event-attendance.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
