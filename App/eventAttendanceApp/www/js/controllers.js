@@ -33,8 +33,14 @@ angular.module('eventAttendance.controllers', ['eventAttendance.services'])
     });
 
     dataService.getEvents()
-      .then(function(result) {
-        $ionicLoading.hide();
-      })
+      .then(
+        function(data) {
+          $ionicLoading.hide();
+          console.log(data);
+        },
+        function(errorMessage) {
+          console.warn(errorMessage);
+        }
+      )
   });
 })

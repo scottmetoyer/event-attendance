@@ -10,9 +10,12 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using EventAttendanceAdmin.Web.DAL;
 using EventAttendanceAdmin.Web.Models;
+using System.Web.Http.Cors;
 
 namespace EventAttendanceAdmin.Web.Controllers
 {
+    [EnableCors(origins: "http://localhost:8100", headers: "*", methods: "*")]
+
     public class EventController : ApiController
     {
         private EventContext db = new EventContext();
