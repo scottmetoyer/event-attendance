@@ -13,12 +13,12 @@ namespace EventAttendanceAdmin.Web.DAL
         {
             var events = new List<Event>
             {
-                new Event { Name = "Coffee Social", Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
-                new Event { Name = "Zumba", Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
-                new Event { Name = "How to Win Friends and Influence People", Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
-                new Event { Name = "Career Workshop", Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
-                new Event { Name = "Weight Training", Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
-                new Event { Name = "Technology in the Classroom", Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
+                new Event { Name = "Coffee Social", Pin = 1234, Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
+                new Event { Name = "Zumba", Pin = 2222,Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
+                new Event { Name = "How to Win Friends and Influence People",Pin = 3455, Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
+                new Event { Name = "Career Workshop", Pin = 1111, Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
+                new Event { Name = "Weight Training", Pin = 2126, Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
+                new Event { Name = "Technology in the Classroom", Pin = 2222, Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
                 new Event { Name = "Oil Painting 101", Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
                 new Event { Name = "Parent Teacher Conference", Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
                 new Event { Name = "College Roadmap", Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
