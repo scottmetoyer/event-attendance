@@ -28,19 +28,24 @@ angular.module('eventAttendance.controllers', ['eventAttendance.services'])
 
 .controller('EventCtrl', function($scope, $state, $ionicPlatform, $ionicLoading, $ionicPopup, $ionicModal, dataService) {
   $scope.$on('$ionicView.loaded', function() {
-    $ionicLoading.show({
-      template: '<ion-spinner class="overlay" icon="lines"></ion-spinner>'
-    });
+    loadEvents();
+  });
+
+  function loadEvents() {
 
     dataService.getEvents()
       .then(
         function(data) {
-          $ionicLoading.hide();
-          console.log(data);
+          $scope.events = data;
         },
         function(errorMessage) {
           console.warn(errorMessage);
         }
       )
-  });
+  }
+
+  $scope.doRefresh = function() {
+    loadEvents();
+    $scope.$broadcast('scroll.refreshComplete');
+  }
 })

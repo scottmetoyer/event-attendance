@@ -1,1 +1,16 @@
-<p>events</p>
+<ion-view view-title="Events">
+  <ion-nav-bar class="bar-positive">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content>
+    <h4 class="padding">Check-in to which event?</h4>
+    <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
+    </ion-refresher>
+    <a class="item item-icon-right" href="#" collection-repeat="event in events">
+      <h2>{{event.Name}}</h2>
+      <p>{{event.Start}} to {{event.End}}</p>
+      <i class="icon ion-arrow-right-c"></i>
+    </a>
+  </ion-content>
+</ion-view>

@@ -1,6 +1,6 @@
 angular.module('eventAttendance.services', [])
   .service('dataService', function($q, $http) {
-    var serviceUrl = 'http://event-attendance.azurewebsites.net/api';
+    var serviceUrl = 'https://event-attendance.azurewebsites.net/api';
     return ({
       getEvents: getEvents,
       saveCheckin: saveCheckin
