@@ -36,6 +36,18 @@ angular.module('eventAttendance.controllers', ['eventAttendance.services'])
     dataService.getEvents()
       .then(
         function(data) {
+          // Add the friendly date description
+          data.forEach(function(e) {
+            var start = new XDate(e.Start);
+            var end = new XDate(e.End);
+
+            if (start.diffDays(end) < 1) {
+              e.Date = start.toString("MMM d, yyyy ',' h(:mm)TT ' - '") + end.toString('h(:mm)TT');
+            } else {
+              e.Date = start.toString("MMM d, yyyy ',' h(:mm)TT ' - '") + end.toString("MMM d, yyyy ',' h(:mm)TT")
+            }
+          })
+
           $scope.events = data;
         },
         function(errorMessage) {
