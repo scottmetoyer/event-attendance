@@ -14,20 +14,9 @@ namespace EventAttendanceAdmin.Web.Controllers
 
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult Events(string filter)
-        {
-            ViewBag.Message = "Events";
-            IEnumerable<Event> model;
-
-            if (!string.IsNullOrEmpty(filter))
-            {
-
-            }
-
-            model = db.Events;
+            var activeEvents = db.Events.Take(5).ToList();
+            var upcomingEvents = db.Events.Take(5).ToList();
+            var model = new HomeViewModel { ActiveEvents = activeEvents, UpcomingEvents = upcomingEvents };
 
             return View(model);
         }
@@ -36,21 +25,5 @@ namespace EventAttendanceAdmin.Web.Controllers
         {
             return View();
         }
-
-        public ActionResult CreateEvent()
-        {
-            return View();
-        }
-
-        public ActionResult EditEvent(int id)
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult SaveEvent(string name, DateTime start, DateTime end, int pin)
-        {
-            return RedirectToAction("Events");
-        }   
     }
 }

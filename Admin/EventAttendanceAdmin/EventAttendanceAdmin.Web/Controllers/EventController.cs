@@ -11,6 +11,7 @@ using EventAttendanceAdmin.Web.Models;
 
 namespace EventAttendanceAdmin.Web.Controllers
 {
+    [Authorize]
     public class EventController : Controller
     {
         private EventContext db = new EventContext();

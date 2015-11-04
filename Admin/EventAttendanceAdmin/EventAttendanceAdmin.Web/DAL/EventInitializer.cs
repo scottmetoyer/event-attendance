@@ -13,16 +13,16 @@ namespace EventAttendanceAdmin.Web.DAL
         {
             var events = new List<Event>
             {
-                new Event { Name = "Coffee Social", Pin = 1234, Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
-                new Event { Name = "Zumba", Pin = 2222,Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
-                new Event { Name = "How to Win Friends and Influence People",Pin = 3455, Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
-                new Event { Name = "Career Workshop", Pin = 1111, Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
-                new Event { Name = "Weight Training", Pin = 2126, Start = new DateTime(2016, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 7, 0, 0) },
-                new Event { Name = "Technology in the Classroom", Pin = 2222, Start = new DateTime(2016, 2, 1, 6, 0, 0), End = new DateTime(2016, 2, 1, 8, 0, 0) },
-                new Event { Name = "Oil Painting 101", Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
-                new Event { Name = "Parent Teacher Conference", Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
-                new Event { Name = "College Roadmap", Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
-                new Event { Name = "Tour the Botanic Gardens", Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
+                new Event { Name = "Coffee Social", Location="The Hub", Pin = 1234, Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
+                new Event { Name = "Zumba", Location="Recreation Center Room 101", Pin = 2222,Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
+                new Event { Name = "How to Win Friends and Influence People", Location="Hub 302",Pin = 3455, Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
+                new Event { Name = "Career Workshop", Location="Career Center", Pin = 1111, Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
+                new Event { Name = "Weight Training", Location="Recreation Center Weightroom", Pin = 2126, Start = new DateTime(2016, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 7, 0, 0) },
+                new Event { Name = "Technology in the Classroom", Location="Technology Workshop", Pin = 2222, Start = new DateTime(2016, 2, 1, 6, 0, 0), End = new DateTime(2016, 2, 1, 8, 0, 0) },
+                new Event { Name = "Oil Painting 101", Location="Arts Buidling Room 1152", Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
+                new Event { Name = "Parent Teacher Conference", Location="Coffee Bean", Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
+                new Event { Name = "College Roadmap", Location="Career Center Workshop Room 15", Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
+                new Event { Name = "Tour the Botanic Gardens", Location="The Botanic Gardens", Start = new DateTime(2015, 1, 1, 6, 0, 0), End = new DateTime(2016, 1, 1, 6, 0, 0) },
             };
 
             events.ForEach(e => context.Events.Add(e));

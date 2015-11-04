@@ -1,4 +1,6 @@
-﻿@{
+﻿@model EventAttendanceAdmin.Web.Models.HomeViewModel
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -11,12 +13,42 @@
 <div class="row">
     <div class="col-md-6">
         <h2>Active Events</h2>
-        <p>
-        </p>
+        <table class="table">
+            @foreach (var item in Model.ActiveEvents)
+            {
+                <tr onclick='window.location.href = "@Url.Action("Details", "Event", new { id = item.Id })"' class="clickable">
+                    <td>
+                        <strong>@Html.DisplayFor(modelItem => item.Name)</strong>
+                        @if (!string.IsNullOrEmpty(item.Location))
+                        {
+                            <text>&#64;</text> @Html.DisplayFor(modelItem => item.Location)
+                        }
+                        <br />
+                        @Html.DisplayFor(modelItem => item.Start) to @Html.DisplayFor(modelItem => item.End)
+                    </td>
+                </tr>
+            }
+        </table>
         <p><a class="btn btn-default" href="@Url.Action("Index", "Event")">View all &raquo;</a></p>
     </div>
     <div class="col-md-6">
         <h2>Upcoming Events</h2>
+        <table class="table">
+            @foreach (var item in Model.ActiveEvents)
+            {
+                <tr onclick='window.location.href = "@Url.Action("Details", "Event", new { id = item.Id })"' class="clickable">
+                    <td>
+                        <strong>@Html.DisplayFor(modelItem => item.Name)</strong>
+                        @if (!string.IsNullOrEmpty(item.Location))
+                        {
+                            <text>&#64;</text> @Html.DisplayFor(modelItem => item.Location)
+                        }
+                        <br />
+                        @Html.DisplayFor(modelItem => item.Start) to @Html.DisplayFor(modelItem => item.End)
+                    </td>
+                </tr>
+            }
+        </table>
         <p><a class="btn btn-default" href="@Url.Action("Index", "Event")">View all &raquo;</a></p>
     </div>
 </div>

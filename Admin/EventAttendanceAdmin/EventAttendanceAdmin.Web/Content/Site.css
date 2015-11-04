@@ -28,6 +28,15 @@ textarea {
     display: inline-block;
 }
 
+.medium {
+    font-size: 36px;
+    display: inline-block;
+}
+
 .jumbotron h1 {
     font-size: 40px !important;
+}
+
+.clickable {
+    cursor: pointer !important;
 }
