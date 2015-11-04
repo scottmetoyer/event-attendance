@@ -10,14 +10,14 @@
       <div class="list list-inset">
         <label class="item item-input">
           <i class="icon ion-locked placeholder-icon"></i>
-          <input type="tel" placeholder="Event Pin">
+          <input type="tel" placeholder="Event Pin" ng-model="checkinModel.pin">
         </label>
         <label class="item item-input">
           <i class="icon ion-person placeholder-icon"></i>
-          <input type="tel" placeholder="Your Student Identifier">
+          <input type="tel" placeholder="Your Student Identifier" ng-model="checkinModel.studentId">
         </label>
       </div>
-      <button class="button button-block button-balanced">
+      <button class="button button-block button-balanced" ng-click="checkin()">
         Check-in to this event
       </button>
     </div>

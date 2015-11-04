@@ -57,12 +57,14 @@ angular.module('eventAttendance.controllers', ['eventAttendance.services'])
     studentId: '',
     pin: ''
   };
+  $scope.checkinModel = checkinModel;
+
   $scope.$on('$ionicView.loaded', function() {
     var evt = dataService.getEvent(eventId);
     $scope.event = evt;
   });
 
   $scope.checkin = function() {
-
+    console.log(checkinModel);
   }
 });
