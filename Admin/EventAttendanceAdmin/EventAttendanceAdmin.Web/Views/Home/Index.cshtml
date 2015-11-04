@@ -5,7 +5,7 @@
 <div class="jumbotron">
     <h1><i class="fa fa-calendar-check-o large"></i>&nbsp;Event Attendance</h1>
     <p class="lead">Easily track campus event attendance using student mobile devices and QR codes.</p>
-    <p><a href="@Url.Action("Events")" class="btn btn-primary btn-lg">Create an event &raquo;</a></p>
+    <p><a href="@Url.Action("Create", "Event")" class="btn btn-primary btn-lg">Create an event &raquo;</a></p>
 </div>
 
 <div class="row">
@@ -13,10 +13,10 @@
         <h2>Active Events</h2>
         <p>
         </p>
-        <p><a class="btn btn-default" href="@Url.Action("Events")">View all &raquo;</a></p>
+        <p><a class="btn btn-default" href="@Url.Action("Index", "Event")">View all &raquo;</a></p>
     </div>
     <div class="col-md-6">
         <h2>Upcoming Events</h2>
-        <p><a class="btn btn-default" href="@Url.Action("Events")">View all &raquo;</a></p>
+        <p><a class="btn btn-default" href="@Url.Action("Index", "Event")">View all &raquo;</a></p>
     </div>
 </div>

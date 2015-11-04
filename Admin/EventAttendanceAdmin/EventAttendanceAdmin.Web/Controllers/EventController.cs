@@ -2,106 +2,112 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using System.Web.Http.Description;
+using System.Web;
+using System.Web.Mvc;
 using EventAttendanceAdmin.Web.DAL;
 using EventAttendanceAdmin.Web.Models;
-using System.Web.Http.Cors;
 
 namespace EventAttendanceAdmin.Web.Controllers
 {
-    [EnableCors(origins: "http://localhost:8100", headers: "*", methods: "*")]
-
-    public class EventController : ApiController
+    public class EventController : Controller
     {
         private EventContext db = new EventContext();
 
-        public IQueryable<Event> GetEvents()
+        public ActionResult Index()
         {
-            return db.Events;
+            return View(db.Events.ToList());
         }
 
-        [Authorize]
-        [ResponseType(typeof(Event))]
-        public IHttpActionResult GetEvent(int id)
+        public ActionResult Details(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             Event @event = db.Events.Find(id);
             if (@event == null)
             {
-                return NotFound();
+                return HttpNotFound();
             }
-
-            return Ok(@event);
+            return View(@event);
         }
 
-        [Authorize]
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutEvent(int id, Event @event)
+        public ActionResult Create()
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            return View();
+        }
 
-            if (id != @event.Id)
+        // POST: Event/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,Name,Location,Start,End,Pin")] Event @event)
+        {
+            if (ModelState.IsValid)
             {
-                return BadRequest();
-            }
-
-            db.Entry(@event).State = EntityState.Modified;
-
-            try
-            {
+                db.Events.Add(@event);
                 db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EventExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return RedirectToAction("Index");
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return View(@event);
         }
 
-        [Authorize]
-        [ResponseType(typeof(Event))]
-        public IHttpActionResult PostEvent(Event @event)
+        public ActionResult Edit(int? id)
         {
-            if (!ModelState.IsValid)
+            if (id == null)
             {
-                return BadRequest(ModelState);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            db.Events.Add(@event);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = @event.Id }, @event);
-        }
-
-        [Authorize]
-        [ResponseType(typeof(Event))]
-        public IHttpActionResult DeleteEvent(int id)
-        {
             Event @event = db.Events.Find(id);
             if (@event == null)
             {
-                return NotFound();
+                return HttpNotFound();
             }
+            return View(@event);
+        }
 
+        // POST: Event/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Name,Location,Start,End,Pin")] Event @event)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(@event).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(@event);
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Event @event = db.Events.Find(id);
+            if (@event == null)
+            {
+                return HttpNotFound();
+            }
+            return View(@event);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Event @event = db.Events.Find(id);
             db.Events.Remove(@event);
             db.SaveChanges();
-
-            return Ok(@event);
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
@@ -111,11 +117,6 @@ namespace EventAttendanceAdmin.Web.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private bool EventExists(int id)
-        {
-            return db.Events.Count(e => e.Id == id) > 0;
         }
     }
 }

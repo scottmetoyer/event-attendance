@@ -1,4 +1,5 @@
-﻿using EventAttendanceAdmin.Web.Models;
+﻿using EventAttendanceAdmin.Web.DAL;
+using EventAttendanceAdmin.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,23 +10,26 @@ namespace EventAttendanceAdmin.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private EventContext db = new EventContext();
+
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Events()
+        public ActionResult Events(string filter)
         {
             ViewBag.Message = "Events";
+            IEnumerable<Event> model;
 
-            return View();
-        }
+            if (!string.IsNullOrEmpty(filter))
+            {
 
-        public ActionResult CheckIns()
-        {
-            ViewBag.Message = "Student Check-Ins";
+            }
 
-            return View();
+            model = db.Events;
+
+            return View(model);
         }
 
         public ActionResult Test()
