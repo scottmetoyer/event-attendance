@@ -43,16 +43,17 @@ angular.module('eventAttendance.services', [])
       return evt;
     }
 
-    function saveCheckin(eventId, studentId, pin) {
+    function saveCheckin(checkin) {
       var request = $http({
         method: "post",
         url: "/checkin",
-        data: {
-          eventId: eventId,
-          studentId: studentId,
-          pin: pin
-        }
+        data: checkin
       });
+      return(request.then(handleSuccess, handleError));
+    }
+
+    function handleSuccess(response) {
+      return response.data;
     }
 
     function handleError(response) {

@@ -65,6 +65,15 @@ angular.module('eventAttendance.controllers', ['eventAttendance.services'])
   });
 
   $scope.checkin = function() {
-    console.log(checkinModel);
+    dataService.saveCheckin(checkinModel)
+    .then(
+      function(data) {
+        // Successful post
+      },
+      function(errorMessage) {
+        // Handle errors
+        console.warn(errorMessage);
+      }
+    )
   }
 });
