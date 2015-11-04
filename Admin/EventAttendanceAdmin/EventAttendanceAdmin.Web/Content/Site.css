@@ -1,6 +1,11 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    -webkit-animation-delay: 0.1s;
+    -webkit-animation-name: fontfix;
+    -webkit-animation-duration: 0.1s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -39,4 +44,15 @@ textarea {
 
 .clickable {
     cursor: pointer !important;
+}
+
+/* fix for chrome bug on font awesome flickering on page load */
+@-webkit-keyframes fontfix {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
