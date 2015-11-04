@@ -52,9 +52,17 @@ angular.module('eventAttendance.controllers', ['eventAttendance.services'])
 
 .controller('CheckInCtrl', function($scope, $state, $ionicPlatform, $stateParams, dataService) {
   var eventId = $stateParams.eventId;
-
+  var checkinModel = {
+    eventId: eventId,
+    studentId: '',
+    pin: ''
+  };
   $scope.$on('$ionicView.loaded', function() {
     var evt = dataService.getEvent(eventId);
     $scope.event = evt;
   });
+
+  $scope.checkin = function() {
+
+  }
 });
