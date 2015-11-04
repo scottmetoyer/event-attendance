@@ -33,6 +33,12 @@ angular.module('eventAttendance', ['ionic', 'eventAttendance.controllers'])
     controller: 'EventCtrl'
   })
 
+  $stateProvider.state('checkin', {
+    url: '/checkin/:eventId',
+    templateUrl: 'templates/checkin.html',
+    controller: 'CheckInCtrl'
+  })
+
   $stateProvider.state('scan', {
     url: '/scan',
     templateUrl: 'templates/scan.html'
