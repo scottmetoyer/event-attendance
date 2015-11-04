@@ -3,7 +3,11 @@
 @{
     ViewBag.Title = "Details";
 }
-
+<script>
+    function showPrintView(eventId) {
+        window.open('/event/print?id=' + eventId);
+    }
+</script>
 <h2><i class="fa fa-calendar-check-o medium"></i>&nbsp;@Model.Name</h2>
 
 <div>
@@ -52,6 +56,7 @@
     </dl>
 </div>
 <p>
+    <a href="#" onclick="showPrintView(@Model.Id)">Print QR Code</a> | 
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

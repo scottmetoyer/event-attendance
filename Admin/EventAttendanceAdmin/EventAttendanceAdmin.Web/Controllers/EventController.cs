@@ -16,6 +16,12 @@ namespace EventAttendanceAdmin.Web.Controllers
     {
         private EventContext db = new EventContext();
 
+        public ActionResult Print(int id)
+        {
+            var e = db.Events.FirstOrDefault(x => x.Id == id);
+            return View(e);
+        }
+
         public ActionResult Index()
         {
             return View(db.Events.ToList());

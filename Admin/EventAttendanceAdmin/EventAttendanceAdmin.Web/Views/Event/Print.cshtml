@@ -1,0 +1,37 @@
+﻿@model EventAttendanceAdmin.Web.Models.Event
+
+@{
+    ViewBag.Title = "Print";
+    Layout = "";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        padding: 40px;
+        font-weight: normal;
+    }
+
+    h1 {
+        margin-bottom: 0px;
+    }
+
+    .pin {
+        font-family: monospace;
+        font-size: 60px;
+    }
+</style>
+<h1>@Model.Name</h1>
+<p>
+    @Model.Location<br />
+    @Model.Start - @Model.End
+</p>
+<br />
+@Html.GenerateRelayQrCode(Model.Name, Model.Name, 400, 400)
+<br />
+<br />
+Check-in Pin:
+<div class="pin">@Model.Pin</div>
+
+
+
