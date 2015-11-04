@@ -48,11 +48,15 @@
         <dt>
             @Html.DisplayNameFor(model => model.Pin)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Pin)
         </dd>
-
+        <dt>
+            QR Code
+        </dt>
+        <dd style="padding-top: 5px">
+            @Html.GenerateRelayQrCode(Model.Name, Model.Id.ToString(), 150, 150)
+        </dd>
     </dl>
 </div>
 <p>

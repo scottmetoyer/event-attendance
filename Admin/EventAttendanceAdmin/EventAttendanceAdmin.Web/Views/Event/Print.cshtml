@@ -27,11 +27,12 @@
     @Model.Start - @Model.End
 </p>
 <br />
-@Html.GenerateRelayQrCode(Model.Name, Model.Name, 400, 400)
+@Html.GenerateRelayQrCode(Model.Name, Model.Id.ToString(), 400, 400)
 <br />
 <br />
-Check-in Pin:
-<div class="pin">@Model.Pin</div>
-
-
+@if (Model.Pin != null)
+{
+    <text>Check-in Pin:</text>
+    <div class="pin">@Model.Pin</div>
+}
 
