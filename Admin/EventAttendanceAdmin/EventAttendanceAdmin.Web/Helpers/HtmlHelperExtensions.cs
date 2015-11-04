@@ -31,7 +31,7 @@ namespace EventAttendanceAdmin.Web.Helpers
                 bitmap.Save(stream, ImageFormat.Gif);
 
                 var img = new TagBuilder("img");
-                img.MergeAttribute("alt", "your alt tag");
+                img.MergeAttribute("alt", alt);
                 img.Attributes.Add("src", String.Format("data:image/gif;base64,{0}",
                     Convert.ToBase64String(stream.ToArray())));
 
