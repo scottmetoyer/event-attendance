@@ -79,18 +79,34 @@ namespace EventAttendanceAdmin.Web.Controllers.Api
         }
 
         [ResponseType(typeof(CheckIn))]
-        public IHttpActionResult PostCheckIn([FromBody] CheckIn checkIn)
+        public IHttpActionResult PostCheckIn([FromBody] CheckInDTO checkIn)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            checkIn.CreateDate = DateTime.Now;
-            db.CheckIns.Add(checkIn);
+            // Validate event p
+            var e = db.Events.FirstOrDefault(x => x.Id == checkIn.EventId);
+            
+            if (e.Pin != null)
+            {
+                if (e.Pin != checkIn.Pin)
+                {
+                    return BadRequest("Invalid pin. Please check your entries and try again.");
+                }
+            }
+
+            var c = new CheckIn
+            {
+                CreateDate = DateTime.Now,
+                EventId = checkIn.EventId,
+                StudentIdentifier = checkIn.StudentId
+            };
+            db.CheckIns.Add(c);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = checkIn.CheckInId }, checkIn);
+            return CreatedAtRoute("DefaultApi", new { id = c.CheckInId }, c);
         }
 
         [Authorize]
