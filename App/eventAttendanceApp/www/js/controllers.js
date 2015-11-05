@@ -75,7 +75,7 @@ angular.module('eventAttendance.controllers', ['eventAttendance.services'])
 
   $scope.checkin = function() {
     if (checkinModel.studentId == '') {
-      showPopup('Missing required field', 'Please enter your Student Id and the event PIN to check-in')
+      showPopup('Missing required field', 'Please enter your Student Id and the event PIN to check-in.')
     } else {
       dataService.saveCheckin(checkinModel)
         .then(
