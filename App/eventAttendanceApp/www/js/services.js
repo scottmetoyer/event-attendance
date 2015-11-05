@@ -1,6 +1,5 @@
 angular.module('eventAttendance.services', [])
   .service('dataService', function($q, $http) {
-    var events = {};
     var serviceUrl = 'https://event-attendance.azurewebsites.net/api';
     return ({
       getEvents: getEvents,
@@ -14,18 +13,9 @@ angular.module('eventAttendance.services', [])
         url: serviceUrl + "/event"
       });
       return (request.then(function(response) {
-        events = response.data;
-
-        // Add the friendly date description
+        var events = response.data;
         events.forEach(function(e) {
-          var start = new XDate(e.start);
-          var end = new XDate(e.end);
-
-          if (start.diffDays(end) < 1) {
-            e.date = start.toString("MMM d, yyyy ',' h(:mm)TT ' - '") + end.toString('h(:mm)TT');
-          } else {
-            e.date = start.toString("MMM d, yyyy ',' h(:mm)TT ' - '") + end.toString("MMM d, yyyy ',' h(:mm)TT");
-          }
+          parseDate(e);
         })
 
         return (events);
@@ -33,14 +23,16 @@ angular.module('eventAttendance.services', [])
     }
 
     function getEvent(id) {
-      var evt = null;
-
-      events.forEach(function(e) {
-        if (e.id == id) {
-          evt = e;
-        }
+      var request = $http({
+        method: "get",
+        url: serviceUrl + "/event/" + id
       });
-      return evt;
+
+      return (request.then(function(response) {
+        var evt = response.data;
+        parseDate(evt);
+        return (evt);
+      }, handleError));
     }
 
     function saveCheckin(checkin) {
@@ -67,5 +59,16 @@ angular.module('eventAttendance.services', [])
       }
 
       return ($q.reject(response.data.message));
+    }
+
+    function parseDate(e) {
+      var start = new XDate(e.start);
+      var end = new XDate(e.end);
+
+      if (start.diffDays(end) < 1) {
+        e.date = start.toString("MMM d, yyyy ',' h(:mm)TT ' - '") + end.toString('h(:mm)TT');
+      } else {
+        e.date = start.toString("MMM d, yyyy ',' h(:mm)TT ' - '") + end.toString("MMM d, yyyy ',' h(:mm)TT");
+      }
     }
   });

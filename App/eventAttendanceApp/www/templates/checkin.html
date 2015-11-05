@@ -4,7 +4,10 @@
     </ion-nav-back-button>
   </ion-nav-bar>
   <ion-content>
-    <div class="padding">
+    <div class="padding" ng-show="!ready">
+      <ion-spinner icon="dots"></ion-spinner>
+    </div>
+    <div class="padding" ng-show="ready">
       <h2>{{event.name}}</h2>
       <h4>{{event.date}}</h4>
       <div class="list list-inset">
