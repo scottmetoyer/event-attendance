@@ -1,32 +1,39 @@
-angular.module('eventAttendance.controllers', ['eventAttendance.services'])
-  // $cordovaBarcodeScanner
-  .controller('HomeCtrl', function($scope, $state, $ionicPlatform) {
-    $scope.scan = function() {
-      /*
-        $ionicPlatform.ready(function() {
-            $cordovaBarcodeScanner
-            .scan()
-            .then(function(result) {
-                // Success! Barcode data is here
-                vm.scanResults = "We got a barcoden" +
-                "Result: " + result.text + "n" +
-                "Format: " + result.format + "n" +
-                "Cancelled: " + result.cancelled;
+angular.module('eventAttendance.controllers', ['ngCordova', 'eventAttendance.services'])
+  .controller('HomeCtrl', function($scope, $state, $stateParams, $ionicPlatform, $ionicPopup, $cordovaBarcodeScanner) {
+    $scope.$on('$ionicView.loaded', function() {
+      if ($stateParams.error != null) {
+        showPopup("Error scanning QR code", $stateParams.error );
+      }
+    });
 
-                alert(vm.scanResults);
-            }, function(error) {
-                // An error occurred
-                vm.scanResults = 'Error: ' + error;
+    $scope.scan = function() {
+      $ionicPlatform.ready(function() {
+        $cordovaBarcodeScanner
+          .scan()
+          .then(function(result) {
+            $state.go('checkin', {
+              eventId: result.text
             });
-        });*/
+          }, function(error) {
+            showPopup("Error scanning QR code", error);
+          });
+      });
     }
 
     $scope.events = function() {
       $state.go('events');
     }
+
+    function showPopup(title, message) {
+      var alertPopup = $ionicPopup.alert({
+        title: title,
+        template: message
+      });
+    }
   })
 
 .controller('EventCtrl', function($scope, $state, $ionicPlatform, $ionicPopup, dataService) {
+  $scope.ready = false;
   $scope.$on('$ionicView.loaded', function() {
     loadEvents();
   });
@@ -36,6 +43,7 @@ angular.module('eventAttendance.controllers', ['eventAttendance.services'])
       .then(
         function(data) {
           $scope.events = data;
+          $scope.ready = true;
         },
         function(errorMessage) {
           var alertPopup = $ionicPopup.alert({
@@ -63,6 +71,12 @@ angular.module('eventAttendance.controllers', ['eventAttendance.services'])
 
   $scope.$on('$ionicView.loaded', function() {
     var evt = dataService.getEvent(eventId);
+    if (evt == null) {
+      $state.go('home', {
+        error: 'Invalid event, please check your QR code and try again.'
+      });
+    }
+
     $scope.event = evt;
   });
 
