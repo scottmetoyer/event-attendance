@@ -24,7 +24,6 @@ namespace EventAttendanceAdmin.Web.Controllers.Api
             return db.Events;
         }
 
-        [Authorize]
         [ResponseType(typeof(Event))]
         public IHttpActionResult GetEvent(int id)
         {
