@@ -54,13 +54,23 @@
         <dt>
             QR Code
         </dt>
-        <dd style="padding-top: 5px">
+        <dd style="padding-top: 5px; padding-bottom: 5px;">
             @Html.GenerateRelayQrCode(Model.Name, Model.Id.ToString(), 150, 150)
+        </dd>
+        <dt>
+            Attendees
+        </dt>
+        <dd>
+            @Model.CheckIns.Count() students have attended this event
+            @if (Model.CheckIns.Count() > 0)
+            {
+                <text>(</text><a href = "#" >download report</a><text>)</text>
+            }
         </dd>
     </dl>
 </div>
 <p>
-    <a href="#" onclick="showPrintView(@Model.Id)">Print QR Code</a> | 
+    <a href="#" onclick="showPrintView(@Model.Id)">Print QR Code</a> |
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
