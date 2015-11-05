@@ -43,4 +43,10 @@ angular.module('eventAttendance', ['ionic', 'eventAttendance.controllers'])
     url: '/scan',
     templateUrl: 'templates/scan.html'
   })
+
+  $stateProvider.state('success', {
+    url: '/success',
+    templateUrl: 'templates/success.html',
+    controller: 'SuccessCtrl'
+  })
 })

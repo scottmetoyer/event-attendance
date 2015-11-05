@@ -47,11 +47,20 @@ $footer-color: #ececec;
 .large:before {
   font-size: 120px !important;
 }
+.extra-large:before {
+  font-size: 160px !important;
+}
 .spinner.overlay svg {
   width: 28px;
   height: 28px;
   stroke: #fff;
   fill: #fff;
+}
+.success {
+  background-color: $brand-color;
+}
+.success h3, .success div {
+  color: #fff!important;
 }
 
 // Include all of Ionic

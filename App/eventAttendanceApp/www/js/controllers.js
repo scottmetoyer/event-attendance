@@ -26,16 +26,16 @@ angular.module('eventAttendance.controllers', ['eventAttendance.services'])
     }
   })
 
-.controller('EventCtrl', function($scope, $state, $ionicPlatform, dataService) {
+.controller('EventCtrl', function($scope, $state, $ionicPlatform, $ionicModal, dataService) {
   $scope.$on('$ionicView.loaded', function() {
     loadEvents();
   });
 
   function loadEvents() {
-
     dataService.getEvents()
       .then(
         function(data) {
+          console.log(data)
           $scope.events = data;
         },
         function(errorMessage) {
@@ -50,7 +50,7 @@ angular.module('eventAttendance.controllers', ['eventAttendance.services'])
   }
 })
 
-.controller('CheckInCtrl', function($scope, $state, $ionicPlatform, $stateParams, dataService) {
+.controller('CheckInCtrl', function($scope, $state, $ionicPlatform, $ionicPopup, $stateParams, dataService) {
   var eventId = $stateParams.eventId;
   var checkinModel = {
     eventId: eventId,
@@ -64,16 +64,32 @@ angular.module('eventAttendance.controllers', ['eventAttendance.services'])
     $scope.event = evt;
   });
 
+  function showPopup(title, message) {
+    var alertPopup = $ionicPopup.alert({
+      title: title,
+      template: message
+    });
+  }
+
   $scope.checkin = function() {
-    dataService.saveCheckin(checkinModel)
-    .then(
-      function(data) {
-        // Successful post
-      },
-      function(errorMessage) {
-        // Handle errors
-        console.warn(errorMessage);
-      }
-    )
+    if (checkinModel.studentId == '') {
+      showPopup('Missing required field', 'Please enter your Student Id and the event PIN to check-in')
+    } else {
+      dataService.saveCheckin(checkinModel)
+      .then(
+        function(data) {
+          $state.go('success');
+        },
+        function(errorMessage) {
+          showPopup('Error checking in', errorMessage);
+        }
+      )
+    }
+  }
+})
+
+.controller('SuccessCtrl', function($scope, $state) {
+  $scope.home = function() {
+    $state.go('home');
   }
 });

@@ -41,11 +41,20 @@ $dark:                            #444 !default;
 .large:before {
   font-size: 120px !important; }
 
+.extra-large:before {
+  font-size: 160px !important; }
+
 .spinner.overlay svg {
   width: 28px;
   height: 28px;
   stroke: #fff;
   fill: #fff; }
+
+.success {
+  background-color: #2d6cc0; }
+
+.success h3, .success div {
+  color: #fff !important; }
 
 /*!
   Ionicons, v2.0.1

@@ -18,13 +18,13 @@ angular.module('eventAttendance.services', [])
 
         // Add the friendly date description
         events.forEach(function(e) {
-          var start = new XDate(e.Start);
-          var end = new XDate(e.End);
+          var start = new XDate(e.start);
+          var end = new XDate(e.end);
 
           if (start.diffDays(end) < 1) {
-            e.Date = start.toString("MMM d, yyyy ',' h(:mm)TT ' - '") + end.toString('h(:mm)TT');
+            e.date = start.toString("MMM d, yyyy ',' h(:mm)TT ' - '") + end.toString('h(:mm)TT');
           } else {
-            e.Date = start.toString("MMM d, yyyy ',' h(:mm)TT ' - '") + end.toString("MMM d, yyyy ',' h(:mm)TT");
+            e.date = start.toString("MMM d, yyyy ',' h(:mm)TT ' - '") + end.toString("MMM d, yyyy ',' h(:mm)TT");
           }
         })
 
@@ -36,7 +36,7 @@ angular.module('eventAttendance.services', [])
       var evt = null;
 
       events.forEach(function(e) {
-        if (e.Id == id) {
+        if (e.id == id) {
           evt = e;
         }
       });
@@ -45,9 +45,12 @@ angular.module('eventAttendance.services', [])
 
     function saveCheckin(checkin) {
       var request = $http({
-        method: "post",
-        url: "/checkin",
-        data: checkin
+        method: "POST",
+        url: serviceUrl + "/checkin",
+        data: JSON.stringify(checkin),
+        headers: {
+          'content-type': 'application/json'
+        }
       });
       return(request.then(handleSuccess, handleError));
     }

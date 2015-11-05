@@ -7,9 +7,9 @@
     <h4 class="padding">Check-in to which event?</h4>
     <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
     </ion-refresher>
-    <a class="item item-icon-right" href="#/checkin/{{event.Id}}" collection-repeat="event in events">
-      <h2>{{event.Name}}</h2>
-      <p>{{event.Date}}</p>
+    <a class="item item-icon-right" href="#/checkin/{{event.id}}" collection-repeat="event in events">
+      <h2>{{event.name}}</h2>
+      <p>{{event.date}}</p>
       <i class="icon ion-arrow-right-c"></i>
     </a>
   </ion-content>
