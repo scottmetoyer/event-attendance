@@ -26,7 +26,7 @@ angular.module('eventAttendance.controllers', ['eventAttendance.services'])
     }
   })
 
-.controller('EventCtrl', function($scope, $state, $ionicPlatform, $ionicModal, dataService) {
+.controller('EventCtrl', function($scope, $state, $ionicPlatform, $ionicPopup, dataService) {
   $scope.$on('$ionicView.loaded', function() {
     loadEvents();
   });
@@ -35,11 +35,13 @@ angular.module('eventAttendance.controllers', ['eventAttendance.services'])
     dataService.getEvents()
       .then(
         function(data) {
-          console.log(data)
           $scope.events = data;
         },
         function(errorMessage) {
-          console.warn(errorMessage);
+          var alertPopup = $ionicPopup.alert({
+            title: 'Error loading events',
+            template: errorMessage
+          });
         }
       )
   }
@@ -76,14 +78,14 @@ angular.module('eventAttendance.controllers', ['eventAttendance.services'])
       showPopup('Missing required field', 'Please enter your Student Id and the event PIN to check-in')
     } else {
       dataService.saveCheckin(checkinModel)
-      .then(
-        function(data) {
-          $state.go('success');
-        },
-        function(errorMessage) {
-          showPopup('Error checking in', errorMessage);
-        }
-      )
+        .then(
+          function(data) {
+            $state.go('success');
+          },
+          function(errorMessage) {
+            showPopup('Error checking in', errorMessage);
+          }
+        )
     }
   }
 })
