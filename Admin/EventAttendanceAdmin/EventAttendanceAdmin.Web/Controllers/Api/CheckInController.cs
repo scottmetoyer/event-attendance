@@ -86,15 +86,21 @@ namespace EventAttendanceAdmin.Web.Controllers.Api
                 return BadRequest(ModelState);
             }
 
-            // Validate event p
+            // Validate event pin
             var e = db.Events.FirstOrDefault(x => x.Id == checkIn.EventId);
-            
             if (e.Pin != null)
             {
                 if (e.Pin != checkIn.Pin)
                 {
                     return BadRequest("Invalid pin. Please check your entries and try again.");
                 }
+            }
+
+            // Make sure this user hasn't already checked in
+            var existing = db.CheckIns.FirstOrDefault(x => x.EventId == checkIn.EventId && x.StudentIdentifier == checkIn.StudentId);
+            if (existing != null)
+            {
+                return BadRequest("You have already checked in to this event.");
             }
 
             var c = new CheckIn
