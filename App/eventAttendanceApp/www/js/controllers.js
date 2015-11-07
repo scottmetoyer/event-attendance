@@ -62,11 +62,19 @@ angular.module('eventAttendance.controllers', ['ngCordova', 'eventAttendance.ser
   var checkinModel = {
     eventId: eventId,
     studentId: '',
-    pin: ''
+    pin: '',
+    rememberMe: true
   };
   $scope.checkinModel = checkinModel;
 
   $scope.$on('$ionicView.enter', function() {
+    // Load StudentId from local storage
+    var rememberMe = window.localStorage['rememberMe'];
+    if (rememberMe == 'true') {
+      checkinModel.rememberMe = true;
+      checkinModel.studentId = window.localStorage['studentId'];
+    }
+
     dataService.getEvent(eventId).then(
       function(data) {
         $scope.event = data;
@@ -91,6 +99,13 @@ angular.module('eventAttendance.controllers', ['ngCordova', 'eventAttendance.ser
     if (checkinModel.studentId == '') {
       showPopup('Missing required field', 'Please enter your Student Id and the event PIN to check-in.')
     } else {
+      if (checkinModel.rememberMe) {
+        // Persist to local storage
+        window.localStorage['rememberMe'] = 'true';
+        window.localStorage['studentId'] = checkinModel.studentId;
+      } else {
+        window.localStorage.clear();
+      }
       dataService.saveCheckin(checkinModel)
         .then(
           function(data) {
