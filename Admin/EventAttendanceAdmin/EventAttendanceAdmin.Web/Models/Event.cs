@@ -24,6 +24,8 @@ namespace EventAttendanceAdmin.Web.Models
 
         public int?  Pin { get; set; }
 
+        public bool ValidateStudentId { get; set; }
+
         [JsonIgnore]
         public virtual ICollection<CheckIn> CheckIns { get; set; }
     }
