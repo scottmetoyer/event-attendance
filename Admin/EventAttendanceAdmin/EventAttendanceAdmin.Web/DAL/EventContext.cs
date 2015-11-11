@@ -10,12 +10,10 @@ namespace EventAttendanceAdmin.Web.DAL
 {
     public class EventContext : DbContext
     {
-        public EventContext() : base("EventContext")
-        {
-        }
+        public EventContext() : base("EventContext") { }
 
-        public DbSet<Event> Events { get; set; }
-        public DbSet<CheckIn> CheckIns { get; set; }
+        public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<CheckIn> CheckIns { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
